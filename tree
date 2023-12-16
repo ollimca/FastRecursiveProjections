@@ -1,0 +1,4 @@
+main_pricing.o: main_pricing.cpp FRP_Pricing.h include/newmatio.h \
+  include/newmat.h include/include.h include/myexcept.h \
+  include/fin_recipes.h Seq.h FRP_Heston_class.h Model.h include/fftw3.h \
+  haar.h FRP_Merton_class.h FRP_BS_class.h FRP_Progs.h Matrutils.h
