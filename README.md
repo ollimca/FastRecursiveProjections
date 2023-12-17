@@ -11,7 +11,7 @@ librecipes.a : not sure it’s strictly necessary. It’s a library of c++ codes
 
 As an example, we provide the main_pricing.cpp. The code calls the libFRP library and computes the American option prices under the Heston, Merton and Black Scholes models. The user should change the parameters in the box  /*INPUT PARAMETERS*/ at the beginning of the main.
 
-The code has been test on both Windows and Mac. If you compile the code from the command line in a Linux-like environment (tested on mac) you should do the following steps
+The code has been tested on both Windows and Mac. If you compile the code from the command line in a Linux-like environment (tested on mac) you should do the following steps
 
 _Compile the library libFRP.so_
 
