@@ -1,26 +1,113 @@
-# C++ library of the paper: “Early Exercise Decision in American Options with Dividends, Stochastic Volatility and Jumps ”.
+# Fast Recursive Projections (FRP)
 
-Code comes with no warranty. If you use parts of it, please cite the original source.
+This repository contains a C++ implementation of the Fast Recursive Projections (FRP) method for pricing American-style options under a variety of asset dynamics.
 
-The library relies on other available open source libraries:
-You will need
-libnewmat : http://www.robertnz.net/nm_intro.htm
-it’s a simple matrix algebra matrix
-libfftw3.a: for fast fourier transform.  http://www.fftw.org
-librecipes.a : not sure it’s strictly necessary. It’s a library of c++ codes for finance. You should only need the header that we included in the 'include' folder. Here is the source http://finance.bi.no/~bernt/gcc_prog/recipes/
+The code accompanies the paper:
 
-As an example, we provide the main_pricing.cpp. The code calls the libFRP library and computes the American option prices under the Heston, Merton and Black Scholes models. The user should change the parameters in the box  /*INPUT PARAMETERS*/ at the beginning of the main.
+Cosma, A., Galluccio, S., Pederzoli, P., & Scaillet, O.
+Early Exercise Decision in American Options with Dividends, Stochastic Volatility, and Jumps
+Journal of Financial and Quantitative Analysis, 55(1), 331–356 (2020)
+DOI: 10.1017/S0022109018001229
 
-The code has been tested on both Windows and Mac. If you compile the code from the command line in a Linux-like environment (tested on mac) you should do the following steps
+The implementation supports American option pricing under:
+- Black–Scholes dynamics
+- Heston stochastic volatility
+- Merton jump-diffusion
 
-_Compile the library libFRP.so_
+The repository provides both a shared library (libFRP.so) and a simple executable example illustrating how to use the pricing routines.
 
-make lib
+---
 
-_Compile the main_pricing.cpp example, and link it to the library_
+## Repository structure
 
-make exec
+Main files:
+- FRP_*.{h,cpp}: model-specific FRP implementations (Black–Scholes, Heston, Merton)
+- FRP_Pricing.{h,cpp}: pricing interface and orchestration logic
+- main_pricing.cpp: example program used to run pricing experiments (edit the /INPUT PARAMETERS/ section in main())
+- include/: headers for third-party numerical components
+- lib/: directory where compiled artifacts are generated
 
-_Run the executable main_pricing_
+---
 
-make run
+## Dependencies
+
+The code relies on the following external libraries:
+
+- newmat (matrix algebra)
+  http://www.robertnz.net/nm_intro.htm
+
+- FFTW3 (Fast Fourier Transform)
+  http://www.fftw.org
+
+Some legacy references mention librecipes.a; in practice, the headers shipped in the include/ directory are sufficient for the provided build setup.
+
+This is research code and is provided as is, without warranty.
+
+---
+
+## Build and run
+
+The code is built using make.
+
+Compile the shared library:
+
+    make lib
+
+Compile the example executable:
+
+    make exec
+
+Run the example:
+
+    make run
+
+The executable is built from main_pricing.cpp and linked against libFRP.so.
+
+---
+
+## Usage
+
+To run your own experiments, edit the /INPUT PARAMETERS/ section at the beginning of main() in main_pricing.cpp.
+That section is where you specify:
+- the model (Black–Scholes, Heston, or Merton),
+- option characteristics,
+- numerical and grid parameters.
+
+After modifying the parameters, rebuild and run using the commands above.
+
+---
+
+## Citation
+
+If you use this code in academic work, please cite the associated paper:
+
+BibTeX:
+
+    @article{CosmaGalluccioPederzoliScaillet2020,
+      title   = {Early Exercise Decision in American Options with Dividends, Stochastic Volatility, and Jumps},
+      author  = {Cosma, Antonio and Galluccio, Stefano and Pederzoli, Paola and Scaillet, Olivier},
+      journal = {Journal of Financial and Quantitative Analysis},
+      year    = {2020},
+      volume  = {55},
+      number  = {1},
+      pages   = {331--356},
+      doi     = {10.1017/S0022109018001229}
+    }
+
+---
+
+## License
+
+This repository is released under the CC0-1.0 license.
+
+---
+
+## Acknowledgements
+
+This code relies on open-source numerical libraries, in particular newmat and FFTW.
+
+---
+
+## Contact
+
+Questions, comments, or issues can be raised via the GitHub issue tracker for this repository.
